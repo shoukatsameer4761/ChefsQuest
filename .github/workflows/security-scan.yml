@@ -19,3 +19,8 @@ jobs:
           persist-credentials: false
       - name: Scan source and build configuration
         run: python3 scripts/security/scan.py
+      - name: Audit app dependencies
+        run: npm audit --package-lock-only --ignore-scripts --audit-level=high
+      - name: Audit website dependencies
+        run: npm audit --package-lock-only --ignore-scripts --audit-level=high
+        working-directory: website
